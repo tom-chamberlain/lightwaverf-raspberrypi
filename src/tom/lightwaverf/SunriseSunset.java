@@ -1,4 +1,4 @@
-package com.stellaromeo.lightwaverf;
+package tom.lightwaverf;
 
 import java.net.URL;
 import java.net.URLConnection;

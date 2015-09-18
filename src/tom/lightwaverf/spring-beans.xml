@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="executor" class="tom.lightwaverf.Executor">
+		<property name="itemsToSchedule">
+			<list>
+			
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="10:00"/>
+					<property name="endTime" value="10:30"/>
+					<property name="function" ref="off"/>
+					<property name="device" ref="bedroomLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="1high"/>
+					<property name="device" ref="livingRoomCeilingLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="22:00"/>
+					<property name="endTime" value="23:58"/>
+					<property name="function" ref="1low"/>
+					<property name="device" ref="livingRoomCeilingLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="endTime" value="22:30"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="on"/>
+					<property name="device" ref="livingRoomTVLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="endTime" value="22:45"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="on"/>
+					<property name="device" ref="livingRoomUplighter"/>
+				</bean>
+			
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="06:40"/>
+					<property name="endTime" value="07:30"/>
+					<property name="ignoreIfSunAlreadyRisen" value="true"/>
+					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
+					<property name="onlyWeekdays" value="true"/>
+					<property name="function" ref="2med"/>
+					<property name="device" ref="kitchenLights"/>
+				</bean>
+			
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="2med"/>
+					<property name="device" ref="kitchenLights"/>
+				</bean>
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="21:30"/>
+					<property name="endTime" value="23:59"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="1low"/>
+					<property name="device" ref="kitchenLights"/>
+				</bean>	
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="06:40"/>
+					<property name="endTime" value="07:30"/>
+					<property name="ignoreIfSunAlreadyRisen" value="true"/>
+					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
+					<property name="onlyWeekdays" value="true"/>
+					<property name="function" ref="2high"/>
+					<property name="device" ref="downstairsHallLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="4low"/>
+					<property name="device" ref="downstairsHallLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="22:00"/>
+					<property name="endTime" value="23:59"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="1low"/>
+					<property name="device" ref="downstairsHallLights"/>
+				</bean>		
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="06:40"/>
+					<property name="endTime" value="07:30"/>
+					<property name="ignoreIfSunAlreadyRisen" value="true"/>
+					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
+					<property name="onlyWeekdays" value="true"/>
+					<property name="function" ref="on"/>
+					<property name="device" ref="outsideSecurityLight"/>
+				</bean>
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="17:30"/>
+					<property name="endTime" value="23:30"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="on"/>
+					<property name="device" ref="outsideSecurityLight"/>
+				</bean>
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="06:40"/>
+					<property name="endTime" value="07:30"/>
+					<property name="ignoreIfSunAlreadyRisen" value="true"/>
+					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
+					<property name="onlyWeekdays" value="true"/>
+					<property name="function" ref="1high"/>
+					<property name="device" ref="upstairsHallLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="18:00"/>
+					<property name="endTime" value="23:00"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="1med"/>
+					<property name="device" ref="upstairsHallLights"/>
+				</bean>
+
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="22:00"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="3med"/>
+					<property name="device" ref="upstairsHallLights"/>
+				</bean>
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem">
+					<property name="startTime" value="18:00"/>
+					<property name="endTime" value="23:00"/>
+					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
+					<property name="function" ref="on"/>
+					<property name="device" ref="outdoorsFairyLights"/>
+				</bean>
+	
+			<!-- 			
+		
+					
+					// Random events
+					
+					actions.add(new Action(new TimeFrame("01:21", "01:23",
+							Days.Weekdays), Device.OUTSIDE_LAMP, Function.ON));
+					
+					actions.add(new Action(new TimeFrame("02:49","02:50",
+							Days.Everyday), Device.OUTSIDE_LAMP, Function.ON));
+					
+		
+					actions.add(new Action(new TimeFrame("01:31", "01:32",
+							Days.Weekdays), Device.DOWNSTAIRS_HALL_LIGHTS, Function.DIM_50));
+					
+					actions.add(new Action(new TimeFrame("02:39","02:41",
+							Days.Everyday), Device.KITCHEN_LIGHTS, Function.DIM_60));
+					
+					actions.add(new Action(new TimeFrame("02:01","02:02",
+							Days.Everyday), Device.DOWNSTAIRS_TOILET_LIGHTS, Function.DIM_83));
+		
+					
+					
+					// MAKE SURE OFF
+					actions.add(new Action(new TimeFrame("08:00","08:20", Days.Everyday), Device.DOWNSTAIRS_TOILET_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("17:30","23:59", Days.Everyday), Device.DOWNSTAIRS_TOILET_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:00","04:50", Days.Everyday), Device.OUTSIDE_LAMP, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:01","04:51", Days.Everyday), Device.OUTDOORS_FAIRY, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:02","04:52", Days.Everyday), Device.OUTDOORS_FLOOD, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:03","04:53", Days.Everyday), Device.DOWNSTAIRS_HALL_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:04","04:54", Days.Everyday), Device.DOWNSTAIRS_TOILET_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:05","04:55", Days.Everyday), Device.KITCHEN_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:06","04:56", Days.Everyday), Device.BEDROOM_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:06","04:56", Days.Everyday), Device.LIVING_ROOM_LIGHTS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:06","04:56", Days.Everyday), Device.LIVING_ROOM_TV_LAMPS, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:06","04:56", Days.Everyday), Device.LIVING_ROOM_UPLIGHTER, Function.OFF));
+					actions.add(new Action(new TimeFrame("04:06","04:56", Days.Everyday), Device.UPSTAIRS_HALL_LIGHTS, Function.OFF));
+				 -->
+			</list>
+		</property>
+		<property name="lightwaveUtils" ref="lightwaveUtils"/>
+		<property name="timeUtils" ref="timeUtils" />
+	</bean>
+	
+	
+	
+	
+	
+	<bean id="lightwaveUtils" class="tom.lightwaverf.timekeeping.LightwaveRfUtils">
+		<property name="unit" ref="lightwaveunit"/>
+	</bean>
+	
+	
+	
+	<bean id="timeUtils" class="tom.lightwaverf.timekeeping.TimeUtils">
+	</bean>
+	
+	
+	
+	<bean id="lightwaveunit" class="tom.lightwaverf.lightwave.LightwaveRfUnit">
+		<property name="hostname" value="192.168.1.98"/>
+		<property name="millisecondsToWaitBetweenSendingCommands" value="500"/>
+		<property name="numberOfTimesToSendCommand" value="2"/>
+		<property name="port" value="9760"/>
+	</bean>
+	
+	<import resource="device-beans.xml"/>
+	<import resource="function-beans.xml"/>
+
+</beans>

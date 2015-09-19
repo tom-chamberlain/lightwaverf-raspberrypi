@@ -7,6 +7,9 @@ import java.util.TimeZone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
+import com.luckycatlabs.sunrisesunset.dto.Location;
+
 import tom.lightwaverf.model.ScheduledItem;
 
 public class TimeUtils {
@@ -16,12 +19,42 @@ public class TimeUtils {
 	
 	public boolean requiresActivating(ScheduledItem item)
 	{
-		return currentTimeWithinPeriod(item) && !item.isActivated();
+		boolean activate = currentTimeWithinPeriod(item) &&	!item.isActivated();
+		
+		if (item.isIgnoreIfSunAlreadyRisen())
+		{
+			activate &= !sunHasRisen();
+		}
+		
+		if (item.isOnlyWeekdays())
+		{
+			activate &= todayIsAWeekday();
+		}
+		
+		if (item.isOnlyWeekends())
+		{
+			activate &= todayIsAWeekend();
+		}
+		
+		if (item.isDelayStartTimeToSunsetIfSunNotSet())
+		{
+			activate &= sunHasSet();
+		}
+				
+		return activate;
 	}
 	
+
 	public boolean requiresDeactivating(ScheduledItem item)
 	{
-		return !currentTimeWithinPeriod(item) && item.isActivated();
+		boolean deactivate = !currentTimeWithinPeriod(item) && item.isActivated();
+		
+		if (item.isEndAtSunriseIfSunriseBeforeEndTime())
+		{
+			deactivate &= sunHasRisen();
+		}
+		
+		return deactivate;
 	}
 	
 	
@@ -46,6 +79,31 @@ public class TimeUtils {
 			System.exit(1);
 		}
 		return time;
+	}
+	
+	
+	private boolean sunHasRisen()
+	{
+		Location location = new Location("52.489471", "-1.898575");
+		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, "Europe/London");
+		return Calendar.getInstance().after(calculator.getOfficialSunriseCalendarForDate(Calendar.getInstance()));
+	}
+	
+	private boolean sunHasSet()
+	{
+		Location location = new Location("52.489471", "-1.898575");
+		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, "Europe/London");
+		return Calendar.getInstance().after(calculator.getOfficialSunsetCalendarForDate(Calendar.getInstance()));
+	}
+	
+	private boolean todayIsAWeekday() {
+		Calendar timeNow = Calendar.getInstance();
+		return timeNow.get(Calendar.DAY_OF_WEEK) > 0 && timeNow.get(Calendar.DAY_OF_WEEK) < 7;
+	}
+	
+	private boolean todayIsAWeekend() {
+		Calendar timeNow = Calendar.getInstance();
+		return timeNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || timeNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY; 
 	}
 	
 }

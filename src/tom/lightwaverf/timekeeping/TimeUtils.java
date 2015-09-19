@@ -71,10 +71,9 @@ public class TimeUtils {
 	
 	public static boolean currentTimeWithinPeriod(ScheduledItem item)
 	{
-		Calendar dateNow = Calendar.getInstance(TimeZone.getTimeZone("Europe/London"));
-		return currentTimeWithinPeriod(parseTime(dateNow.get(Calendar.HOUR_OF_DAY) + ":" + dateNow.get(Calendar.MINUTE)), 
-				parseTime(item.getStartTime()),
-				parseTime(item.getEndTime()));
+		return currentTimeWithinPeriod(Calendar.getInstance(TimeZone.getTimeZone("Europe/London")), 
+				parseTimeWithTodaysDate(item.getStartTime()),
+				parseTimeWithTodaysDate(item.getEndTime()));
 	}
 	
 	public static boolean currentTimeWithinPeriod(RandomItem item)
@@ -98,13 +97,18 @@ public class TimeUtils {
 	}
 	
 
-	public static Calendar parseTime(String timeAsString) {
+	public static Calendar parseTimeWithTodaysDate(String timeAsString) {
 		
 		if (timeAsString == null) return null;
 		
+		Calendar timeNow = Calendar.getInstance();
 		Calendar time = Calendar.getInstance();
+		
+		
 		try {
 			time.setTime(new SimpleDateFormat("HH:mm").parse(timeAsString));
+			timeNow.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
+			timeNow.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
 		}
 		catch (Exception e)
 		{
@@ -112,7 +116,7 @@ public class TimeUtils {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		return time;
+		return timeNow;
 	}
 	
 	

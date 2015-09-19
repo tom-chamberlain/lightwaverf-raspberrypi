@@ -79,8 +79,8 @@ public class Executor {
 		{
 			if (randomItem.getCalculatedTimeToEnd() == null)
 			{
-				Calendar fromTime = TimeUtils.parseTime(randomItem.getFromTime());
-				Calendar endTime = TimeUtils.parseTime(randomItem.getEndTime());
+				Calendar fromTime = TimeUtils.parseTimeWithTodaysDate(randomItem.getFromTime());
+				Calendar endTime = TimeUtils.parseTimeWithTodaysDate(randomItem.getEndTime());
 				
 				int numberOfMinutesBetweenTimes = (int)(endTime.getTimeInMillis() - fromTime.getTimeInMillis()) / 1000 / 60;
 				
@@ -89,6 +89,12 @@ public class Executor {
 				fromTime.add(Calendar.MINUTE, numberOfMinutesToAdd);
 				endTime.setTimeInMillis(fromTime.getTimeInMillis());
 				endTime.add(Calendar.MINUTE, random.nextInt(5));
+				
+				if (fromTime.before(Calendar.getInstance()))
+				{
+					fromTime.add(Calendar.DATE, 1);
+					endTime.add(Calendar.DATE, 1);
+				}
 				
 				logger.info("Calculated random times for {} of {} at {} and off at {}", randomItem.getFunction().getName(),
 						randomItem.getDevice().getName(), fromTime.getTime().toGMTString(), endTime.getTime().toGMTString());
@@ -116,7 +122,7 @@ public class Executor {
 
 	private void turnEverythingOffIfCorrectTime(String offTimeAsString) {
 		
-		Calendar offTime = TimeUtils.parseTime(offTimeAsString);
+		Calendar offTime = TimeUtils.parseTimeWithTodaysDate(offTimeAsString);
 		Calendar timeNow = Calendar.getInstance();
 		
 		if (offTime.get(Calendar.MINUTE) == timeNow.get(Calendar.MINUTE) && offTime.get(Calendar.HOUR_OF_DAY) == timeNow.get(Calendar.HOUR_OF_DAY))

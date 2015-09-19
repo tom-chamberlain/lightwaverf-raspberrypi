@@ -7,7 +7,7 @@ package tom.lightwaverf.model;
  */
 public abstract class ItemState {
 	
-	private boolean activated;
+	private boolean activated = false;
 	private Device device;
 	private Function function;
 	

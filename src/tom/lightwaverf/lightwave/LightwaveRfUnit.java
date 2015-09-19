@@ -66,7 +66,7 @@ public class LightwaveRfUnit {
 		for (int i = 0; i < numberOfTimesToSendCommand; i++)
 		{
 			
-			logger.debug("Issuing command {} ({} of {})", command, i, numberOfTimesToSendCommand);
+			logger.debug("Issuing command {} ({} of {})", command, i+1, numberOfTimesToSendCommand);
 	
 			try {
 				byte[] message = command.getBytes();

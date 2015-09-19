@@ -1,6 +1,7 @@
 package tom.lightwaverf.timekeeping;
 
 import tom.lightwaverf.lightwave.LightwaveRfUnit;
+import tom.lightwaverf.model.ItemState;
 import tom.lightwaverf.model.ScheduledItem;
 
 public class LightwaveRfUtils {
@@ -11,9 +12,9 @@ public class LightwaveRfUtils {
 	 * Turns on or set the dim level for a device
 	 * @param item
 	 */
-	public void activate(ScheduledItem item)
+	public void activate(ItemState item)
 	{
-		if (item.getStartTime() == null)
+		if (item instanceof ScheduledItem && ((ScheduledItem) item).getStartTime() == null)
 		{
 			return;
 		}
@@ -27,9 +28,9 @@ public class LightwaveRfUtils {
 	 * Turns off the device
 	 * @param item
 	 */
-	public void deactivate(ScheduledItem item)
+	public void deactivate(ItemState item)
 	{
-		if (item.getEndTime() == null)
+		if (item instanceof ScheduledItem && ((ScheduledItem) item).getEndTime() == null)
 		{
 			return;
 		}
@@ -40,13 +41,13 @@ public class LightwaveRfUtils {
 	
 	
 
-	private String generateDeactivateCommand(ScheduledItem item) {
+	private String generateDeactivateCommand(ItemState item) {
 		
 		return "001,!" + item.getDevice().getCode() + "F0" 
 				+ "|" + item.getDevice().getName() + "|Off|\n";
 	}
 	
-	private String generateActivationCommand(ScheduledItem item) {
+	private String generateActivationCommand(ItemState item) {
 		return "001,!" + item.getDevice().getCode() + item.getFunction().getCode() 
 				+ "|" + item.getDevice().getName() + "|" + item.getFunction().getCode() + "\n";
 

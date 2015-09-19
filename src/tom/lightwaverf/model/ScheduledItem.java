@@ -5,13 +5,11 @@ package tom.lightwaverf.model;
  * @author tom.chamberlain
  *
  */
-public class ScheduledItem extends ScheduledItemState {
+public class ScheduledItem extends ItemState {
 	
 	private boolean onlyWeekdays = false;
 	private boolean onlyWeekends = false;
-	private Device device;
-	private Function function;
-	
+
 	private String startTime;
 	private String endTime;
 	
@@ -31,18 +29,6 @@ public class ScheduledItem extends ScheduledItemState {
 	}
 	public void setOnlyWeekends(boolean onlyWeekends) {
 		this.onlyWeekends = onlyWeekends;
-	}
-	public Device getDevice() {
-		return device;
-	}
-	public void setDevice(Device device) {
-		this.device = device;
-	}
-	public Function getFunction() {
-		return function;
-	}
-	public void setFunction(Function function) {
-		this.function = function;
 	}
 	public String getStartTime() {
 		return startTime;

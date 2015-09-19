@@ -4,6 +4,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Represents the LightwaveRF Wifi unit that commands are sent to
  * @author tom.chamberlain
@@ -16,6 +19,7 @@ public class LightwaveRfUnit {
 	private int numberOfTimesToSendCommand;
 	private int millisecondsToWaitBetweenSendingCommands;
 	
+	private Logger logger = LogManager.getLogger();
 
 	public String getHostname() {
 		return hostname;
@@ -62,7 +66,7 @@ public class LightwaveRfUnit {
 		for (int i = 0; i < numberOfTimesToSendCommand; i++)
 		{
 			
-			System.out.println("Sending attempt " + (i + 1) + " " + command);
+			logger.debug("Issuing command {} ({} of {})", command, i, numberOfTimesToSendCommand);
 	
 			try {
 				byte[] message = command.getBytes();
@@ -73,7 +77,7 @@ public class LightwaveRfUnit {
 				Thread.sleep(millisecondsToWaitBetweenSendingCommands);
 			} catch (Exception e) {
 				
-				System.err.println(e);
+				logger.error("Unable to send UDP command", e);
 			}
 		}
 	}	

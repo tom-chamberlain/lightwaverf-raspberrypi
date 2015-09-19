@@ -4,20 +4,23 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import tom.lightwaverf.model.ScheduledItem;
 
 public class TimeUtils {
+	
+	private Logger logger = LogManager.getLogger();
 
 	
 	public boolean requiresActivating(ScheduledItem item)
 	{
-		System.out.println("Returning false");
 		return currentTimeWithinPeriod(item) && !item.isActivated();
 	}
 	
 	public boolean requiresDeactivating(ScheduledItem item)
 	{
-		System.out.println("Returning false");
 		return !currentTimeWithinPeriod(item) && item.isActivated();
 	}
 	
@@ -27,8 +30,7 @@ public class TimeUtils {
 	{
 		Calendar dateNow = Calendar.getInstance(TimeZone.getTimeZone("Europe/London"));
 		Calendar timeNow = parseTime(dateNow.get(Calendar.HOUR_OF_DAY) + ":" + dateNow.get(Calendar.MINUTE));
-		
-		return timeNow.after(item.getStartTime()) && timeNow.before(item.getEndTime());
+		return timeNow.after(parseTime(item.getStartTime())) && timeNow.before(parseTime(item.getEndTime()));
 	}
 	
 
@@ -39,7 +41,7 @@ public class TimeUtils {
 		}
 		catch (Exception e)
 		{
-			System.err.println("Unable to parse date");
+			logger.error("Unable to parse date", e);
 			e.printStackTrace();
 			System.exit(1);
 		}

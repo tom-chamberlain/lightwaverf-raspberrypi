@@ -7,8 +7,7 @@
 	<bean id="executor" class="tom.lightwaverf.Executor">
 		<property name="itemsToSchedule">
 			<list>
-			
-				<bean class="tom.lightwaverf.model.ScheduledItem">
+			 	<bean class="tom.lightwaverf.model.ScheduledItem">
 					<property name="startTime" value="10:00"/>
 					<property name="endTime" value="10:30"/>
 					<property name="function" ref="off"/>

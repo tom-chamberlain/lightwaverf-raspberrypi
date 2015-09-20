@@ -14,13 +14,14 @@ public class LightwaveRfUtils {
 	 */
 	public void activate(ItemState item)
 	{
+		item.setActivated(true);
+		
 		if (item instanceof ScheduledItem && ((ScheduledItem) item).getStartTime() == null)
 		{
 			return;
 		}
 		
 		unit.sendCommand(generateActivationCommand(item));
-		item.setActivated(true);
 	}
 	
 
@@ -30,13 +31,14 @@ public class LightwaveRfUtils {
 	 */
 	public void deactivate(ItemState item)
 	{
+		item.setActivated(false);
+		
 		if (item instanceof ScheduledItem && ((ScheduledItem) item).getEndTime() == null)
 		{
 			return;
 		}
 		
 		unit.sendCommand(generateDeactivateCommand(item));
-		item.setActivated(false);
 	}
 	
 	

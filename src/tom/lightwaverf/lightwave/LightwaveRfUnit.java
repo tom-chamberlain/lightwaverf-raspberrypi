@@ -63,12 +63,12 @@ public class LightwaveRfUnit {
 	 */
 	public void sendCommand(String command)
 	{
+		logger.debug("Issuing command {} ", command);
+		
 		for (int i = 0; i < numberOfTimesToSendCommand; i++)
-		{
-			
-			logger.debug("Issuing command {} ({} of {})", command, i+1, numberOfTimesToSendCommand);
-	
+		{	
 			try {
+				
 				byte[] message = command.getBytes();
 	
 				DatagramSocket dsocket = new DatagramSocket();

@@ -85,13 +85,9 @@ public class TimeUtils {
 	
 	public static boolean currentTimeWithinPeriod(Calendar timeNow, Calendar startTime, Calendar endTime)
 	{
-		if (startTime == null)
-		{
-			return timeNow.before(endTime);
-		}
 		if (endTime == null)
 		{
-			return timeNow.after(startTime);
+			endTime = parseTimeWithTodaysDate("23:59");
 		}
 		return timeNow.after(startTime) && timeNow.before(endTime);
 	}
@@ -102,10 +98,9 @@ public class TimeUtils {
 		if (timeAsString == null) return null;
 		
 		Calendar timeNow = Calendar.getInstance();
-		Calendar time = Calendar.getInstance();
-		
 		
 		try {
+			Calendar time = Calendar.getInstance();
 			time.setTime(new SimpleDateFormat("HH:mm").parse(timeAsString));
 			timeNow.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
 			timeNow.set(Calendar.MINUTE, time.get(Calendar.MINUTE));

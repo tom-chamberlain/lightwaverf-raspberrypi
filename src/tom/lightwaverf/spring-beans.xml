@@ -150,6 +150,8 @@
 		<property name="timesToTurnEverythingOff">
 		<list>
 			<value>13:00</value>
+			<value>09:00</value>
+			<value>23:50</value>
 			<value>04:00</value>
 		</list>
 		</property>

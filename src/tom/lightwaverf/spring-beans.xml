@@ -82,7 +82,7 @@
 				<bean class="tom.lightwaverf.model.ScheduledItem">
 					<property name="startTime" value="17:30"/>
 					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="4low"/>
+					<property name="function" ref="3low"/>
 					<property name="device" ref="downstairsHallLights"/>
 				</bean>
 				
@@ -123,19 +123,13 @@
 				</bean>
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="18:00"/>
-					<property name="endTime" value="23:00"/>
+					<property name="startTime" value="17:30"/>
+					<property name="endTime" value="22:00"/>
 					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
 					<property name="function" ref="1med"/>
 					<property name="device" ref="upstairsHallLights"/>
 				</bean>
 
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="22:00"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="3med"/>
-					<property name="device" ref="upstairsHallLights"/>
-				</bean>
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem">
 					<property name="startTime" value="18:00"/>

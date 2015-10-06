@@ -15,12 +15,15 @@ import tom.lightwaverf.model.ScheduledItem;
 
 public class TimeUtils {
 	
+	private static final String EUROPE_LONDON = "Europe/London";
 	private static Logger logger = LogManager.getLogger();
 
 	
 	public static boolean requiresActivating(ScheduledItem item)
 	{
-		boolean activate = currentTimeWithinPeriod(item) &&	!item.isActivated();
+		if (item.isActivated()) return false;
+		
+		boolean activate = currentTimeWithinPeriod(item);
 		
 		if (item.isIgnoreIfSunAlreadyRisen())
 		{
@@ -29,7 +32,7 @@ public class TimeUtils {
 		
 		if (item.isOnlyWeekdays())
 		{
-			activate &= todayIsAWeekday();
+			activate &= !todayIsAWeekend();
 		}
 		
 		if (item.isOnlyWeekends())
@@ -41,6 +44,12 @@ public class TimeUtils {
 		{
 			activate &= sunHasSet();
 		}
+		
+		if (item.isEndAtSunriseIfSunriseBeforeEndTime())
+		{
+			activate &= !sunHasRisen();
+		}
+		
 				
 		return activate;
 	}
@@ -48,11 +57,13 @@ public class TimeUtils {
 
 	public static boolean requiresDeactivating(ScheduledItem item)
 	{
-		boolean deactivate = !currentTimeWithinPeriod(item) && item.isActivated();
+		if (!item.isActivated()) return false;
+		
+		boolean deactivate = !currentTimeWithinPeriod(item);
 		
 		if (item.isEndAtSunriseIfSunriseBeforeEndTime())
 		{
-			deactivate &= sunHasRisen();
+			deactivate |= sunHasRisen();
 		}
 		
 		return deactivate;
@@ -71,25 +82,21 @@ public class TimeUtils {
 	
 	public static boolean currentTimeWithinPeriod(ScheduledItem item)
 	{
-		return currentTimeWithinPeriod(Calendar.getInstance(TimeZone.getTimeZone("Europe/London")), 
+		return currentTimeWithinPeriod(Calendar.getInstance(TimeZone.getTimeZone(EUROPE_LONDON)), 
 				parseTimeWithTodaysDate(item.getStartTime()),
 				parseTimeWithTodaysDate(item.getEndTime()));
 	}
 	
 	public static boolean currentTimeWithinPeriod(RandomItem item)
 	{
-		return currentTimeWithinPeriod(Calendar.getInstance(TimeZone.getTimeZone("Europe/London")), 
+		return currentTimeWithinPeriod(Calendar.getInstance(TimeZone.getTimeZone(EUROPE_LONDON)), 
 				item.getCalculatedTimeToStart(),
 				item.getCalculatedTimeToEnd());
 	}
 	
 	public static boolean currentTimeWithinPeriod(Calendar timeNow, Calendar startTime, Calendar endTime)
 	{
-		if (endTime == null)
-		{
-			endTime = parseTimeWithTodaysDate("23:59");
-		}
-		return timeNow.after(startTime) && timeNow.before(endTime);
+		return timeNow.after(startTime) && timeNow.before(endTime != null ? endTime : parseTimeWithTodaysDate("23:59"));
 	}
 	
 
@@ -97,13 +104,14 @@ public class TimeUtils {
 		
 		if (timeAsString == null) return null;
 		
-		Calendar timeNow = Calendar.getInstance();
+		Calendar timeNow = Calendar.getInstance(TimeZone.getTimeZone(EUROPE_LONDON));
 		
 		try {
 			Calendar time = Calendar.getInstance();
 			time.setTime(new SimpleDateFormat("HH:mm").parse(timeAsString));
 			timeNow.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
 			timeNow.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
+			timeNow.set(Calendar.SECOND, 0);
 		}
 		catch (Exception e)
 		{
@@ -114,26 +122,22 @@ public class TimeUtils {
 		return timeNow;
 	}
 	
+
 	
 	public static boolean sunHasRisen()
 	{
 		Location location = new Location("52.489471", "-1.898575");
-		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, "Europe/London");
+		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, EUROPE_LONDON);
 		return Calendar.getInstance().after(calculator.getOfficialSunriseCalendarForDate(Calendar.getInstance()));
 	}
 	
 	public static boolean sunHasSet()
 	{
 		Location location = new Location("52.489471", "-1.898575");
-		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, "Europe/London");
+		SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(location, EUROPE_LONDON);
 		return Calendar.getInstance().after(calculator.getOfficialSunsetCalendarForDate(Calendar.getInstance()));
 	}
-	
-	public static boolean todayIsAWeekday() {
-		Calendar timeNow = Calendar.getInstance();
-		return timeNow.get(Calendar.DAY_OF_WEEK) > 0 && timeNow.get(Calendar.DAY_OF_WEEK) < 7;
-	}
-	
+
 	public static boolean todayIsAWeekend() {
 		Calendar timeNow = Calendar.getInstance();
 		return timeNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || timeNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY; 

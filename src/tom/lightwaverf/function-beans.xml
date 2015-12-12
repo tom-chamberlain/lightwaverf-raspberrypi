@@ -1,142 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="on" class="tom.lightwaverf.model.Function">
-		<property name="code" value="F1"/>
-		<property name="name" value="on"/>
-	</bean>
+	<bean id="on" class="tom.lightwaverf.model.Function"
+		p:code="F1"
+		p:name="on"/>
 	
-	<bean id="off" class="tom.lightwaverf.model.Function">
-		<property name="code" value="F0"/>
-		<property name="name" value="off"/>
-	</bean>
 	
-	<bean id="max" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP31"/>
-		<property name="name" value="max"/>
-	</bean>
-	<bean id="10high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP30"/>
-		<property name="name" value="10high"/>
-	</bean>
-	<bean id="10med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP29"/>
-		<property name="name" value="10med"/>
-	</bean>
-	<bean id="10low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP28"/>
-		<property name="name" value="10low"/>
-	</bean>
-	<bean id="9high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP27"/>
-		<property name="name" value="9high"/>
-	</bean>
-	<bean id="9med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP26"/>
-		<property name="name" value="9med"/>
-	</bean>
-	<bean id="9low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP25"/>
-		<property name="name" value="9low"/>
-	</bean>
-	<bean id="8high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP24"/>
-		<property name="name" value="8high"/>
-	</bean>
-	<bean id="8med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP23"/>
-		<property name="name" value="8med"/>
-	</bean>
-	<bean id="8low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP22"/>
-		<property name="name" value="8low"/>
-	</bean>
-	<bean id="7high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP21"/>
-		<property name="name" value="7high"/>
-	</bean>
-	<bean id="7med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP20"/>
-		<property name="name" value="7med"/>
-	</bean>	
-	<bean id="7low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP19"/>
-		<property name="name" value="7low"/>
-	</bean>	
-	<bean id="6high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP18"/>
-		<property name="name" value="6high"/>
-	</bean>	
-	<bean id="6med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP17"/>
-		<property name="name" value="6med"/>
-	</bean>	
-	<bean id="6low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP16"/>
-		<property name="name" value="6low"/>
-	</bean>	
-	<bean id="5high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP15"/>
-		<property name="name" value="5high"/>
-	</bean>		
-	<bean id="5med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP14"/>
-		<property name="name" value="5med"/>
-	</bean>	
-	<bean id="5low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP13"/>
-		<property name="name" value="5low"/>
-	</bean>	
-	<bean id="4high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP12"/>
-		<property name="name" value="4high"/>
-	</bean>	
-	<bean id="4med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP11"/>
-		<property name="name" value="4med"/>
-	</bean>	
-	<bean id="4low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP10"/>
-		<property name="name" value="4low"/>
-	</bean>	
-	<bean id="3high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP9"/>
-		<property name="name" value="3high"/>
-	</bean>	
-	<bean id="3med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP8"/>
-		<property name="name" value="3med"/>
-	</bean>	
-	<bean id="3low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP7"/>
-		<property name="name" value="3low"/>
-	</bean>	
-	<bean id="2high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP6"/>
-		<property name="name" value="2high"/>
-	</bean>	
-	<bean id="2med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP5"/>
-		<property name="name" value="2med"/>
-	</bean>	
-	<bean id="2low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP4"/>
-		<property name="name" value="2low"/>
-	</bean>	
-	<bean id="1high" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP3"/>
-		<property name="name" value="1high"/>
-	</bean>	
-	<bean id="1med" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP2"/>
-		<property name="name" value="1med"/>
-	</bean>	
-	<bean id="1low" class="tom.lightwaverf.model.Function">
-		<property name="code" value="FdP1"/>
-		<property name="name" value="1low"/>
-	</bean>
-
+	<bean id="off" class="tom.lightwaverf.model.Function"
+		p:code="F0"
+		p:name="off"/>
+	
+	
+	<bean id="max" class="tom.lightwaverf.model.Function"
+		p:code="FdP31"
+		p:name="max"/>
+	
+	<bean id="10high" class="tom.lightwaverf.model.Function"
+		p:code="FdP30"
+		p:name="10high"/>
+	
+	<bean id="10med" class="tom.lightwaverf.model.Function"
+		p:code="FdP29"
+		p:name="10med"/>
+	
+	<bean id="10low" class="tom.lightwaverf.model.Function"
+		p:code="FdP28"
+		p:name="10low"/>
+	
+	<bean id="9high" class="tom.lightwaverf.model.Function"
+		p:code="FdP27"
+		p:name="9high"/>
+	
+	<bean id="9med" class="tom.lightwaverf.model.Function"
+		p:code="FdP26"
+		p:name="9med"/>
+	
+	<bean id="9low" class="tom.lightwaverf.model.Function"
+		p:code="FdP25"
+		p:name="9low"/>
+	
+	<bean id="8high" class="tom.lightwaverf.model.Function"
+		p:code="FdP24"
+		p:name="8high"/>
+	
+	<bean id="8med" class="tom.lightwaverf.model.Function"
+		p:code="FdP23"
+		p:name="8med"/>
+	
+	<bean id="8low" class="tom.lightwaverf.model.Function"
+		p:code="FdP22"
+		p:name="8low"/>
+	
+	<bean id="7high" class="tom.lightwaverf.model.Function"
+		p:code="FdP21"
+		p:name="7high"/>
+	
+	<bean id="7med" class="tom.lightwaverf.model.Function"
+		p:code="FdP20"
+		p:name="7med"/>
+		
+	<bean id="7low" class="tom.lightwaverf.model.Function"
+		p:code="FdP19"
+		p:name="7low"/>
+		
+	<bean id="6high" class="tom.lightwaverf.model.Function"
+		p:code="FdP18"
+		p:name="6high"/>
+		
+	<bean id="6med" class="tom.lightwaverf.model.Function"
+		p:code="FdP17"
+		p:name="6med"/>
+		
+	<bean id="6low" class="tom.lightwaverf.model.Function"
+		p:code="FdP16"
+		p:name="6low"/>
+		
+	<bean id="5high" class="tom.lightwaverf.model.Function"
+		p:code="FdP15"
+		p:name="5high"/>
+			
+	<bean id="5med" class="tom.lightwaverf.model.Function"
+		p:code="FdP14"
+		p:name="5med"/>
+		
+	<bean id="5low" class="tom.lightwaverf.model.Function"
+		p:code="FdP13"
+		p:name="5low"/>
+		
+	<bean id="4high" class="tom.lightwaverf.model.Function"
+		p:code="FdP12"
+		p:name="4high"/>
+		
+	<bean id="4med" class="tom.lightwaverf.model.Function"
+		p:code="FdP11"
+		p:name="4med"/>
+		
+	<bean id="4low" class="tom.lightwaverf.model.Function"
+		p:code="FdP10"
+		p:name="4low"/>
+		
+	<bean id="3high" class="tom.lightwaverf.model.Function"
+		p:code="FdP9"
+		p:name="3high"/>
+		
+	<bean id="3med" class="tom.lightwaverf.model.Function"
+		p:code="FdP8"
+		p:name="3med"/>
+		
+	<bean id="3low" class="tom.lightwaverf.model.Function"
+		p:code="FdP7"
+		p:name="3low"/>
+		
+	<bean id="2high" class="tom.lightwaverf.model.Function"
+		p:code="FdP6"
+		p:name="2high"/>
+		
+	<bean id="2med" class="tom.lightwaverf.model.Function"
+		p:code="FdP5"
+		p:name="2med"/>
+		
+	<bean id="2low" class="tom.lightwaverf.model.Function"
+		p:code="FdP4"
+		p:name="2low"/>
+		
+	<bean id="1high" class="tom.lightwaverf.model.Function"
+		p:code="FdP3"
+		p:name="1high"/>
+		
+	<bean id="1med" class="tom.lightwaverf.model.Function"
+		p:code="FdP2"
+		p:name="1med"/>
+		
+	<bean id="1low" class="tom.lightwaverf.model.Function"
+		p:code="FdP1"
+		p:name="1low"/>
 
 </beans>

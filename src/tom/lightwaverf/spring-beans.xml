@@ -1,143 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 	<bean id="executor" class="tom.lightwaverf.Executor">
 		<property name="itemsToSchedule">
 			<list>
-			 	<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="10:00"/>
-					<property name="endTime" value="10:30"/>
-					<property name="function" ref="off"/>
-					<property name="device" ref="bedroomLights"/>
-				</bean>
+			 	<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="10:00"
+					p:endTime="10:30"
+					p:function-ref="off"
+					p:device-ref="bedroomLights"/>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="1high"/>
-					<property name="device" ref="livingRoomCeilingLights"/>
-				</bean>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="22:00"/>
-					<property name="endTime" value="23:58"/>
-					<property name="function" ref="1low"/>
-					<property name="device" ref="livingRoomCeilingLights"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="1high"
+					p:device-ref="livingRoomCeilingLights"/>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="endTime" value="22:30"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="on"/>
-					<property name="device" ref="livingRoomTVLights"/>
-				</bean>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="endTime" value="22:45"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="on"/>
-					<property name="device" ref="livingRoomUplighter"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="22:00"
+					p:endTime="23:58"
+					p:function-ref="1low"
+					p:device-ref="livingRoomCeilingLights"/>
+				
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:endTime="22:30"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="on"
+					p:device-ref="livingRoomTVLights"/>
+				
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:endTime="22:45"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="on"
+					p:device-ref="livingRoomUplighter"/>
+				
 			
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="06:40"/>
-					<property name="endTime" value="07:30"/>
-					<property name="ignoreIfSunAlreadyRisen" value="true"/>
-					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
-					<property name="onlyWeekdays" value="true"/>
-					<property name="function" ref="2med"/>
-					<property name="device" ref="kitchenLights"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="06:40"
+					p:endTime="07:30"
+					p:ignoreIfSunAlreadyRisen="true"
+					p:endAtSunriseIfSunriseBeforeEndTime="true"
+					p:onlyWeekdays="true"
+					p:function-ref="2med"
+					p:device-ref="kitchenLights"/>
+				
 			
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="2med"/>
-					<property name="device" ref="kitchenLights"/>
-				</bean>
-					
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="21:30"/>
-					<property name="endTime" value="23:59"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="1low"/>
-					<property name="device" ref="kitchenLights"/>
-				</bean>	
-					
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="06:40"/>
-					<property name="endTime" value="07:30"/>
-					<property name="ignoreIfSunAlreadyRisen" value="true"/>
-					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
-					<property name="onlyWeekdays" value="true"/>
-					<property name="function" ref="2high"/>
-					<property name="device" ref="downstairsHallLights"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="2med"
+					p:device-ref="kitchenLights"/>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="3low"/>
-					<property name="device" ref="downstairsHallLights"/>
-				</bean>
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="21:30"
+					p:endTime="23:59"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="1low"
+					p:device-ref="kitchenLights"/>
+					
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="06:40"
+					p:endTime="07:30"
+					p:ignoreIfSunAlreadyRisen="true"
+					p:endAtSunriseIfSunriseBeforeEndTime="true"
+					p:onlyWeekdays="true"
+					p:function-ref="2high"
+					p:device-ref="downstairsHallLights"/>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="22:00"/>
-					<property name="endTime" value="23:59"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="1low"/>
-					<property name="device" ref="downstairsHallLights"/>
-				</bean>		
-					
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="06:40"/>
-					<property name="endTime" value="07:30"/>
-					<property name="ignoreIfSunAlreadyRisen" value="true"/>
-					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
-					<property name="onlyWeekdays" value="true"/>
-					<property name="function" ref="on"/>
-					<property name="device" ref="outsideSecurityLight"/>
-				</bean>
-					
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="endTime" value="23:30"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="on"/>
-					<property name="device" ref="outsideSecurityLight"/>
-				</bean>
-					
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="06:40"/>
-					<property name="endTime" value="07:30"/>
-					<property name="ignoreIfSunAlreadyRisen" value="true"/>
-					<property name="endAtSunriseIfSunriseBeforeEndTime" value="true"/>
-					<property name="onlyWeekdays" value="true"/>
-					<property name="function" ref="1high"/>
-					<property name="device" ref="upstairsHallLights"/>
-				</bean>
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="17:30"/>
-					<property name="endTime" value="22:00"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="1med"/>
-					<property name="device" ref="upstairsHallLights"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="3low"
+					p:device-ref="downstairsHallLights"/>
+				
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="22:00"
+					p:endTime="23:59"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="1low"
+					p:device-ref="downstairsHallLights"/>
+						
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="06:40"
+					p:endTime="07:30"
+					p:ignoreIfSunAlreadyRisen="true"
+					p:endAtSunriseIfSunriseBeforeEndTime="true"
+					p:onlyWeekdays="true"
+					p:function-ref="on"
+					p:device-ref="outsideSecurityLight"/>
+				
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:endTime="23:30"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="on"
+					p:device-ref="outsideSecurityLight"/>
+				
+					
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="06:40"
+					p:endTime="07:30"
+					p:ignoreIfSunAlreadyRisen="true"
+					p:endAtSunriseIfSunriseBeforeEndTime="true"
+					p:onlyWeekdays="true"
+					p:function-ref="1high"
+					p:device-ref="upstairsHallLights"/>
+				
+				
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="17:30"
+					p:endTime="22:00"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="1med"
+					p:device-ref="upstairsHallLights"/>
+				
 
 				
-				<bean class="tom.lightwaverf.model.ScheduledItem">
-					<property name="startTime" value="18:00"/>
-					<property name="endTime" value="23:00"/>
-					<property name="delayStartTimeToSunsetIfSunNotSet" value="true"/>
-					<property name="function" ref="on"/>
-					<property name="device" ref="outdoorsFairyLights"/>
-				</bean>
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					p:startTime="18:00"
+					p:endTime="23:00"
+					p:delayStartTimeToSunsetIfSunNotSet="true"
+					p:function-ref="on"
+					p:device-ref="outdoorsFairyLights"/>
+				
 	
 			</list>
 		</property>
@@ -151,24 +152,24 @@
 		</property>
 		<property name="itemsToPerformAtRandomTimes">
 		<list>
-			<bean class="tom.lightwaverf.model.RandomItem">
-				<property name="fromTime" value="01:00"/>
-				<property name="endTime" value="02:00"/>
-				<property name="device" ref="downstairsHallLights"/>
-				<property name="function" ref="6high"/>
-			</bean>
-			<bean class="tom.lightwaverf.model.RandomItem">
-				<property name="fromTime" value="02:00"/>
-				<property name="endTime" value="04:00"/>
-				<property name="device" ref="kitchenLights"/>
-				<property name="function" ref="7high"/>
-			</bean>
-			<bean class="tom.lightwaverf.model.RandomItem">
-				<property name="fromTime" value="02:00"/>
-				<property name="endTime" value="03:00"/>
-				<property name="device" ref="downstairsToiletLight"/>
-				<property name="function" ref="10high"/>
-			</bean>
+			<bean class="tom.lightwaverf.model.RandomItem"
+				p:fromTime="01:00"
+				p:endTime="02:00"
+				p:device-ref="downstairsHallLights"
+				p:function-ref="6high"/>
+			
+			<bean class="tom.lightwaverf.model.RandomItem"
+				p:fromTime="02:00"
+				p:endTime="04:00"
+				p:device-ref="kitchenLights"
+				p:function-ref="7high"/>
+			
+			<bean class="tom.lightwaverf.model.RandomItem"
+				p:fromTime="02:00"
+				p:endTime="03:00"
+				p:device-ref="downstairsToiletLight"
+				p:function-ref="10high"/>
+			
 		</list>
 		</property>
 		<property name="lightwaveUtils" ref="lightwaveUtils"/>
@@ -176,20 +177,18 @@
 	
 	
 	
+	<bean id="lightwaveUtils" class="tom.lightwaverf.timekeeping.LightwaveRfUtils"
+		p:unit-ref="lightwaveunit"/>
 	
-	
-	<bean id="lightwaveUtils" class="tom.lightwaverf.timekeeping.LightwaveRfUtils">
-		<property name="unit" ref="lightwaveunit"/>
-	</bean>
 	
 
 	
-	<bean id="lightwaveunit" class="tom.lightwaverf.lightwave.LightwaveRfUnit">
-		<property name="hostname" value="192.168.1.98"/>
-		<property name="millisecondsToWaitBetweenSendingCommands" value="500"/>
-		<property name="numberOfTimesToSendCommand" value="2"/>
-		<property name="port" value="9760"/>
-	</bean>
+	<bean id="lightwaveunit" class="tom.lightwaverf.lightwave.LightwaveRfUnit"
+		p:hostname="192.168.1.98"
+		p:millisecondsToWaitBetweenSendingCommands="500"
+		p:numberOfTimesToSendCommand="2"
+		p:port="9760"/>
+	
 	
 	<import resource="device-beans.xml"/>
 	<import resource="function-beans.xml"/>

@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="livingRoomCeilingLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R1D1"/>
-		<property name="name" value="livingRoomCeilingLights"/>
-	</bean>
+	<bean id="livingRoomCeilingLights" class="tom.lightwaverf.model.Device"
+		p:code="R1D1"
+		p:name="livingRoomCeilingLights"/>
 	
-	<bean id="livingRoomTVLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R1D2"/>
-		<property name="name" value="livingRoomTVLights"/>
-	</bean>
+	<bean id="livingRoomTVLights" class="tom.lightwaverf.model.Device"
+		p:code="R1D2"
+		p:name="livingRoomTVLights"/>
 	
-	<bean id="livingRoomUplighter" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R1D3"/>
-		<property name="name" value="livingRoomUplighter"/>
-	</bean>
 	
-	<bean id="kitchenLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R3D1"/>
-		<property name="name" value="livingRoomKitchenLights"/>
-	</bean>
+	<bean id="livingRoomUplighter" class="tom.lightwaverf.model.Device"
+		p:code="R1D3"
+		p:name="livingRoomUplighter"/>
 	
-	<bean id="downstairsHallLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R2D1"/>
-		<property name="name" value="downstairsHallLights"/>
-	</bean>
 	
-	<bean id="outsideSecurityLight" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R2D2"/>
-		<property name="name" value="outsideSecurityLight"/>
-	</bean>
+	<bean id="kitchenLights" class="tom.lightwaverf.model.Device"
+		p:code="R3D1"
+		p:name="livingRoomKitchenLights"/>
 	
-	<bean id="downstairsToiletLight" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R5D2"/>
-		<property name="name" value="downstairsToiletLight"/>
-	</bean>
 	
-	<bean id="upstairsHallLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R5D1"/>
-		<property name="name" value="upstairsHallLights"/>
-	</bean>
+	<bean id="downstairsHallLights" class="tom.lightwaverf.model.Device"
+		p:code="R2D1"
+		p:name="downstairsHallLights"/>
 	
-	<bean id="bedroomLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R4D1"/>
-		<property name="name" value="bedroomLights"/>
-	</bean>
+	
+	<bean id="outsideSecurityLight" class="tom.lightwaverf.model.Device"
+		p:code="R2D2"
+		p:name="outsideSecurityLight"/>
+	
+	
+	<bean id="downstairsToiletLight" class="tom.lightwaverf.model.Device"
+		p:code="R5D2"
+		p:name="downstairsToiletLight"/>
+	
+	
+	<bean id="upstairsHallLights" class="tom.lightwaverf.model.Device"
+		p:code="R5D1"
+		p:name="upstairsHallLights"/>
+	
+	
+	<bean id="bedroomLights" class="tom.lightwaverf.model.Device"
+		p:code="R4D1"
+		p:name="bedroomLights"/>
+	
 		
-	<bean id="upstairsHallTwigLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R5D3"/>
-		<property name="name" value="upstairsHallTwigLights"/>
-	</bean>
+	<bean id="upstairsHallTwigLights" class="tom.lightwaverf.model.Device"
+		p:code="R5D3"
+		p:name="upstairsHallTwigLights"/>
 	
-	<bean id="outdoorsFloodLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R6D2"/>
-		<property name="name" value="outdoorsFloodLights"/>
-	</bean>
+	
+	<bean id="outdoorsFloodLights" class="tom.lightwaverf.model.Device"
+		p:code="R6D2"
+		p:name="outdoorsFloodLights"/>
+	
 		
-	<bean id="outdoorsFairyLights" class="tom.lightwaverf.model.Device">
-		<property name="code" value="R6D1"/>
-		<property name="name" value="outdoorsFairyLights"/>
-	</bean>
+	<bean id="outdoorsFairyLights" class="tom.lightwaverf.model.Device"
+		p:code="R6D1"
+		p:name="outdoorsFairyLights"/>
+	
 
 </beans>

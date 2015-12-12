@@ -24,14 +24,14 @@
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="22:00"
-					p:endTime="23:58"
+					p:endTime="22:02"
 					p:function-ref="1low"
 					p:device-ref="livingRoomCeilingLights"/>
 				
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="17:30"
-					p:endTime="22:30"
+					p:endTime="22:15"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="on"
 					p:device-ref="livingRoomTVLights"/>
@@ -39,14 +39,14 @@
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="17:30"
-					p:endTime="22:45"
+					p:endTime="22:25"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="on"
 					p:device-ref="livingRoomUplighter"/>
 				
 			
 				<bean class="tom.lightwaverf.model.ScheduledItem"
-					p:startTime="06:40"
+					p:startTime="06:45"
 					p:endTime="07:30"
 					p:ignoreIfSunAlreadyRisen="true"
 					p:endAtSunriseIfSunriseBeforeEndTime="true"
@@ -58,20 +58,20 @@
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="17:30"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
-					p:function-ref="2med"
+					p:function-ref="2low"
 					p:device-ref="kitchenLights"/>
 				
 					
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="21:30"
-					p:endTime="23:59"
+					p:endTime="22:30"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="1low"
 					p:device-ref="kitchenLights"/>
 					
 					
 				<bean class="tom.lightwaverf.model.ScheduledItem"
-					p:startTime="06:40"
+					p:startTime="06:45"
 					p:endTime="07:30"
 					p:ignoreIfSunAlreadyRisen="true"
 					p:endAtSunriseIfSunriseBeforeEndTime="true"
@@ -83,38 +83,47 @@
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="17:30"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
-					p:function-ref="3low"
+					p:function-ref="2low"
 					p:device-ref="downstairsHallLights"/>
 				
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem"
-					p:startTime="22:00"
-					p:endTime="23:59"
+					p:startTime="22:15"
+					p:endTime="22:40"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="1low"
 					p:device-ref="downstairsHallLights"/>
 						
 					
 				<bean class="tom.lightwaverf.model.ScheduledItem"
-					p:startTime="06:40"
-					p:endTime="07:30"
+					p:startTime="06:45"
+					p:endTime="07:00"
 					p:ignoreIfSunAlreadyRisen="true"
 					p:endAtSunriseIfSunriseBeforeEndTime="true"
 					p:onlyWeekdays="true"
 					p:function-ref="on"
 					p:device-ref="outsideSecurityLight"/>
-				
-					
+
 				<bean class="tom.lightwaverf.model.ScheduledItem"
+					  p:startTime="07:55"
+					  p:endTime="08:05"
+					  p:ignoreIfSunAlreadyRisen="true"
+					  p:endAtSunriseIfSunriseBeforeEndTime="true"
+					  p:onlyWeekdays="true"
+					  p:function-ref="on"
+					  p:device-ref="outsideSecurityLight"/>
+
+
+				<!--<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="17:30"
 					p:endTime="23:30"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="on"
-					p:device-ref="outsideSecurityLight"/>
+					p:device-ref="outsideSecurityLight"/>-->
 				
 					
 				<bean class="tom.lightwaverf.model.ScheduledItem"
-					p:startTime="06:40"
+					p:startTime="06:45"
 					p:endTime="07:30"
 					p:ignoreIfSunAlreadyRisen="true"
 					p:endAtSunriseIfSunriseBeforeEndTime="true"
@@ -127,19 +136,26 @@
 					p:startTime="17:30"
 					p:endTime="22:00"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
-					p:function-ref="1med"
+					p:function-ref="1low"
 					p:device-ref="upstairsHallLights"/>
-				
 
 				
 				<bean class="tom.lightwaverf.model.ScheduledItem"
 					p:startTime="18:00"
-					p:endTime="23:00"
+					p:endTime="22:00"
 					p:delayStartTimeToSunsetIfSunNotSet="true"
 					p:function-ref="on"
 					p:device-ref="outdoorsFairyLights"/>
-				
-	
+
+
+				<bean class="tom.lightwaverf.model.ScheduledItem"
+					  p:startTime="18:00"
+					  p:endTime="22:30"
+					  p:delayStartTimeToSunsetIfSunNotSet="true"
+					  p:function-ref="on"
+					  p:device-ref="upstairsHallTwigLights"/>
+
+
 			</list>
 		</property>
 		<property name="timesToTurnEverythingOff">

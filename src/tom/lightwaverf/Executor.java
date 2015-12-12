@@ -84,7 +84,7 @@ public class Executor {
 				
 				int numberOfMinutesBetweenTimes = (int)(endTime.getTimeInMillis() - fromTime.getTimeInMillis()) / 1000 / 60;
 				
-				int numberOfMinutesToAdd = random.nextInt(numberOfMinutesBetweenTimes);
+				int numberOfMinutesToAdd = random.nextInt(numberOfMinutesBetweenTimes + 1) + 1;
 				
 				fromTime.add(Calendar.MINUTE, numberOfMinutesToAdd);
 				endTime.setTimeInMillis(fromTime.getTimeInMillis());

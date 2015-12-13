@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 
 		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				"classpath:tom/lightwaverf/spring-beans.xml")) {
+				"classpath:spring-beans.xml")) {
 			
 			Executor executor = (Executor) context.getBean("executor");
 

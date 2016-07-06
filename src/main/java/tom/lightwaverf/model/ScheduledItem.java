@@ -17,7 +17,6 @@ public class ScheduledItem extends ItemState {
 	private boolean endAtSunriseIfSunriseBeforeEndTime = false;	
 	private boolean delayStartTimeToSunsetIfSunNotSet = false;
 	
-	
 	public boolean isOnlyWeekdays() {
 		return onlyWeekdays;
 	}
@@ -62,8 +61,4 @@ public class ScheduledItem extends ItemState {
 			boolean delayStartTimeToSunsetIfSunNotSet) {
 		this.delayStartTimeToSunsetIfSunNotSet = delayStartTimeToSunsetIfSunNotSet;
 	}
-
-	
-	
-
 }

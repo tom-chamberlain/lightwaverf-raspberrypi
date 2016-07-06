@@ -1,16 +1,14 @@
 package tom.lightwaverf.lightwave;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * Represents the LightwaveRF Wifi unit that commands are sent to
- * @author tom.chamberlain
- *
  */
 public class LightwaveRfUnit {
 
@@ -53,10 +51,7 @@ public class LightwaveRfUnit {
 			int millisecondsToWaitBetweenSendingCommands) {
 		this.millisecondsToWaitBetweenSendingCommands = millisecondsToWaitBetweenSendingCommands;
 	}
-	
-	
-	
-	
+
 	/**
 	 * Sends the UDP command to the LightwaveRF device
 	 * @param command the command to send
@@ -65,18 +60,12 @@ public class LightwaveRfUnit {
 	{
 		logger.debug("Issuing command {} ", command);
 		
-		for (int i = 0; i < numberOfTimesToSendCommand; i++)
-		{	
-			try {
-				
+		for (int i = 0; i < numberOfTimesToSendCommand; i++) {
+			try (DatagramSocket datagram = new DatagramSocket()) {
 				byte[] message = command.getBytes();
-	
-				DatagramSocket dsocket = new DatagramSocket();
-				dsocket.send(new DatagramPacket(message, message.length, InetAddress.getByName(hostname), port));
-				dsocket.close();
+				datagram.send(new DatagramPacket(message, message.length, InetAddress.getByName(hostname), port));
 				Thread.sleep(millisecondsToWaitBetweenSendingCommands);
 			} catch (Exception e) {
-				
 				logger.error("Unable to send UDP command", e);
 			}
 		}

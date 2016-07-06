@@ -1,18 +1,15 @@
 package tom.lightwaverf;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
 	private static final int DELAY_IN_MS = 1000;
 	private static final int MS_TO_WAIT_BEFORE_CHECKING = 1000;
-	
-	//TODO : Home mode / Away mode
-	//TODO : HomeKit
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -21,7 +18,7 @@ public class Main {
 			
 			Executor executor = (Executor) context.getBean("executor");
 
-			executor.sendInitCode();
+			executor.sendPairingCode();
 			
 			CountDownLatch latch = new CountDownLatch(1);
 			

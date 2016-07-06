@@ -1,17 +1,15 @@
 package tom.lightwaverf;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import tom.lightwaverf.model.RandomItem;
 import tom.lightwaverf.model.ScheduledItem;
 import tom.lightwaverf.timekeeping.LightwaveRfUtils;
 import tom.lightwaverf.timekeeping.TimeUtils;
+
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 public class Executor {
 	
@@ -20,8 +18,7 @@ public class Executor {
 	private List<RandomItem> itemsToPerformAtRandomTimes;
 	
 	private List<String> timesToTurnEverythingOff;
-	private HashMap<String, Calendar> everythingOffRemeber = new HashMap<>();
-	
+
 	private LightwaveRfUtils lightwaveUtils;
 	
 	private Random random = new Random();
@@ -31,54 +28,31 @@ public class Executor {
 	/**
 	 * Scans all items loaded and turns off or on those devices if required
 	 */
-	public void processItems()
-	{
-		for (ScheduledItem item : itemsToSchedule)
-		{
-			if (TimeUtils.requiresActivating(item))
-			{
-				lightwaveUtils.activate(item);
-			}
-			
-			if (TimeUtils.requiresDeactivating(item))
-			{
-				lightwaveUtils.deactivate(item);
+	public void processItems() {
+		itemsToSchedule.stream()
+					   .filter(TimeUtils::requiresActivating)
+					   .forEach(lightwaveUtils::activate);
+
+		itemsToSchedule.stream()
+					   .filter(TimeUtils::requiresDeactivating)
+					   .forEach(lightwaveUtils::deactivate);
+	}
+
+	public void processAllOffEvents() {
+		for (String offTimeAsString : timesToTurnEverythingOff) {
+			Calendar timeNow = Calendar.getInstance();
+			Calendar offTime = TimeUtils.parseTimeWithTodaysDate(offTimeAsString);
+
+			if (timeNow.get(Calendar.MINUTE) == offTime.get(Calendar.MINUTE) && timeNow.get(Calendar.HOUR_OF_DAY) == offTime.get(Calendar.HOUR_OF_DAY)
+				&& timeNow.get(Calendar.SECOND) < 02) {
+				turnEverythingOff();
 			}
 		}
 	}
-	
-	
-	public void processAllOffEvents()
-	{
-		TIMES_TO_TURN_EVERYTHING_OFF_LOOP:
-		for (String offTimeAsString : timesToTurnEverythingOff)
-		{		
-			if (everythingOffRemeber.containsKey(offTimeAsString))
-			{
-				if (everythingOffRemeber.get(offTimeAsString).get(Calendar.DAY_OF_MONTH) == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
-				{
-					continue TIMES_TO_TURN_EVERYTHING_OFF_LOOP;
-				}
-				else
-				{
-					turnEverythingOffIfCorrectTime(offTimeAsString);
-				}
-			}
-			else
-			{
-				turnEverythingOffIfCorrectTime(offTimeAsString);
-			}
-			
-		}
-	}
-	
-	
-	public void processRandomItems()
-	{
-		for (RandomItem randomItem : itemsToPerformAtRandomTimes)
-		{
-			if (randomItem.getCalculatedTimeToEnd() == null)
-			{
+
+	public void processRandomItems() {
+		for (RandomItem randomItem : itemsToPerformAtRandomTimes) {
+			if (randomItem.getCalculatedTimeToEnd() == null) {
 				Calendar fromTime = TimeUtils.parseTimeWithTodaysDate(randomItem.getFromTime());
 				Calendar endTime = TimeUtils.parseTimeWithTodaysDate(randomItem.getEndTime());
 				
@@ -90,8 +64,7 @@ public class Executor {
 				endTime.setTimeInMillis(fromTime.getTimeInMillis());
 				endTime.add(Calendar.MINUTE, random.nextInt(5));
 				
-				if (fromTime.before(Calendar.getInstance()))
-				{
+				if (fromTime.before(Calendar.getInstance())) {
 					fromTime.add(Calendar.DATE, 1);
 					endTime.add(Calendar.DATE, 1);
 				}
@@ -102,43 +75,23 @@ public class Executor {
 				randomItem.setCalculatedTimeToStart(fromTime);
 				randomItem.setCalculatedTimeToEnd(endTime);
 			}
-			
-			
-			if (TimeUtils.requiresActivating(randomItem))
-			{
+
+			if (TimeUtils.requiresActivating(randomItem)) {
 				lightwaveUtils.activate(randomItem);
 			}
 			
-			if (TimeUtils.requiresDeactivating(randomItem))
-			{
+			if (TimeUtils.requiresDeactivating(randomItem)) {
 				lightwaveUtils.deactivate(randomItem);
 				randomItem.setCalculatedTimeToEnd(null);
 			}
-			
-		}
-	
-	}
-
-
-	private void turnEverythingOffIfCorrectTime(String offTimeAsString) {
-		
-		Calendar offTime = TimeUtils.parseTimeWithTodaysDate(offTimeAsString);
-		Calendar timeNow = Calendar.getInstance();
-		
-		if (offTime.get(Calendar.MINUTE) == timeNow.get(Calendar.MINUTE) && offTime.get(Calendar.HOUR_OF_DAY) == timeNow.get(Calendar.HOUR_OF_DAY))
-		{
-			for (ScheduledItem item : itemsToSchedule)
-			{
-				lightwaveUtils.deactivate(item);
-			}
-			everythingOffRemeber.put(offTimeAsString, Calendar.getInstance());
 		}
 	}
-	
-	/**
-	 * Sends the pairing code to the LightwaveRF box  
-	 */
-	public void sendInitCode()
+
+	private void turnEverythingOff() {
+		itemsToSchedule.stream().forEach(item -> lightwaveUtils.deactivate(item));
+	}
+
+	public void sendPairingCode()
 	{
 		lightwaveUtils.sendInitCode();
 	}
@@ -158,6 +111,5 @@ public class Executor {
 	public void setItemsToPerformAtRandomTimes(List<RandomItem> itemsToPerformAtRandomTimes) {
 		this.itemsToPerformAtRandomTimes = itemsToPerformAtRandomTimes;
 	}
-	
-	
+
 }

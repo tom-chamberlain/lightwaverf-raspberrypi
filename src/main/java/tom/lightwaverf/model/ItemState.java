@@ -2,8 +2,6 @@ package tom.lightwaverf.model;
 
 /**
  * Used to store variables set at runtime
- * @author tom.chamberlain
- *
  */
 public abstract class ItemState {
 	
@@ -35,7 +33,5 @@ public abstract class ItemState {
 	public void setFunction(Function function) {
 		this.function = function;
 	}
-	
-	
 
 }
